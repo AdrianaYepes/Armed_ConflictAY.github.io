@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Armed conflict in Colombia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0" >
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="css/theme.css">
+	<style>
+		.mySlides {display:none}
+	</style>
+</head>
+<body>
+<div class="zoom">
+
+	<div class="container">
+		<h1 class="center">Armed conflict in Colombia</h1>
+	</div>
+
+	<div class="center" style="padding-bottom:20px">
+			 
+			<button class="btn slider" id="selected" onclick="currentDiv(1)">1989-1994</button>		
+			<button class="btn slider" onclick="currentDiv(2)">1995-2000</button> 
+			<button class="btn slider" onclick="currentDiv(3)">2001-2006</button> 
+			<button class="btn slider" onclick="currentDiv(4)">2007-2012</button> 
+			<button class="btn slider" id="btnMain" onclick="currentDiv(5)">Entire Period</button>
+	</div>
+
+	<div class="wrap">
+		<div class="relative">
+			<div class="absolute content inner-left shadow" style="max-width:1100px">
+				
+				<img class="mySlides" src="img/1989-1994.svg" style="width:100%">
+				<img class="mySlides" src="img/1995-2000.svg" style="width:100%">
+				<img class="mySlides" src="img/2001-2006.svg" style="width:100%">
+				<img class="mySlides" src="img/2007-2012.svg" style="width:100%">
+				<img class="mySlides" src="img/Global.svg" style="width:100%">
+			</div>
+			
+			<div class="absolute inner-left" id="CB1" style="max-width:1100px">
+				<img src="img/Bacrim.svg" style="width:100%">
+			</div>
+			<div class="absolute inner-left" id="CB2" style="max-width:1100px">
+				<img src="img/FARC.svg" style="width:100%">
+			</div>
+			<div class="absolute inner-left" id="CB3" style="max-width:1100px">
+				<img src="img/ELN.svg" style="width:100%">
+			</div>
+		</div>
+
+		<div class="relative">		
+			<div class="absolute-right content inner-right" style="max-width:260px">
+				<img class="myLegend" src="img/Legend.svg" style="width:100%; display:none">
+				<img class="myLegend" src="img/Legend_Main.svg" style="width:100%; display:none">
+			</div>
+			
+			<div  class="absolute-right inner-right squaredCheckbox">
+				<ul>        
+					<li>
+						<input type="checkbox" name="CB1" onclick="showMe('CB1')" checked>
+					</li>
+					<li>
+						<input type="checkbox" name="CB2" onclick="showMe('CB2')" checked>
+					</li>
+					<li>
+						<input type="checkbox" name="CB3" onclick="showMe('CB3')" checked>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var slideIndex = 5;
+	showDivs(slideIndex);
+
+	function currentDiv(n) {
+		showDivs(slideIndex = n);
+		showLegend(slideIndex = n);
+	}
+
+	function showDivs(n) {
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		var dots = document.getElementsByClassName("slider"); 
+		for (i = 0; i < x.length; i++) {
+		 x[i].style.display = "none";  
+		}
+		for (i = 0; i < dots.length; i++) 
+		x[slideIndex-1].style.display = "block";  
+	}
+	
+	function showLegend(n) {
+		var x = document.getElementsByClassName("myLegend");
+		var dots = document.getElementsByClassName("slider");
+
+		if (slideIndex == 5) {
+			x[0].style.display = "none"
+			x[1].style.display = "block"
+		}
+		else {
+			x[0].style.display = "block"
+			x[1].style.display = "none"
+		};
+	}	
+	
+</script>
+
+<script>
+	window.onload=function(){
+	var btnMain = document.getElementById('btnMain');
+	btnMain.classList.add('selected');
+	var x = document.getElementsByClassName("myLegend");
+	x[0].style.display = "none";
+	x[1].style.display = "block";
+	}
+
+</script>
+
+<script>
+	$(document).ready(function(){ 
+		$(".slider").click(function() { 
+			$(".slider").removeClass('selected');
+			$(this).addClass('selected');
+		});
+	});
+</script>
+
+<script>
+	function showMe (box) {
+
+	var chboxs = document.getElementsByName(box);
+	var vis = "none";
+	for(var i=0;i<chboxs.length;i++) { 
+		if(chboxs[i].checked){
+		 vis = "block";
+			break;
+		}
+	}
+	document.getElementById(box).style.display = vis;
+	}
+</script>
+
+</body>
+</html>
